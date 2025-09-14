@@ -1,0 +1,243 @@
+/* Part 1: CSS Transitions and Animations */
+
+/* Basic Reset and Styling */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f0f8ff, #d0e8ff);
+  margin: 0;
+  padding: 20px;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.2em;
+  color: #2a5d84;
+  animation: fadeInDown 1s ease forwards;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #555;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+/* Fruit List Grid */
+#fruit-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 30px;
+}
+
+/* Fruit Card Styles */
+.fruit-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  perspective: 800px;
+  transition: transform 0.3s ease;
+  user-select: none;
+  position: relative;
+  height: 160px;
+}
+
+.fruit-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Flip animation triggered by JS */
+.fruit-card.flipped .fruit-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front and Back Faces */
+.fruit-front, .fruit-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+  transition: background-color 0.5s ease;
+  border: 2px solid transparent;
+}
+
+/* Front face */
+.fruit-front {
+  background: #fafafa;
+  box-shadow: inset 0 0 10px #eee;
+}
+
+/* Back face */
+.fruit-back {
+  background: #fff;
+  transform: rotateY(180deg);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+/* Highlight animation */
+@keyframes highlightPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px 3px rgba(255, 165, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px 6px rgba(255, 165, 0, 1);
+  }
+}
+
+.fruit-card.highlighted .fruit-front {
+  animation: highlightPulse 2s infinite;
+  border-color: orange;
+}
+
+/* Button Styles */
+.btn {
+  background-color: #2a5d84;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  margin: 0 8px 15px 8px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #1f4560;
+  outline: none;
+  transform: scale(1.05);
+}
+
+/* Controls container */
+#controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 25px 30px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  animation: slideInFade 0.5s ease forwards;
+  text-align: center;
+}
+
+.modal-content p {
+  margin: 15px 0 25px 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFade {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Continuous background animation */
+@keyframes bgPulse {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+body {
+  background: linear-gradient(270deg, #f0f8ff, #d0e8ff, #a0c4ff, #f0f8ff);
+  background-size: 800% 800%;
+  animation: bgPulse 20s ease infinite;
+}

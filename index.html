@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fruit Color Interactive</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Fruit Color Interactive</h1>
+    <p>Click a fruit name to see its color and animation!</p>
+  </header>
+
+  <section id="fruit-list" aria-label="List of fruits">
+    <!-- Fruit cards will be dynamically inserted here -->
+  </section>
+
+  <section id="controls">
+    <button id="highlightAllBtn" class="btn">Highlight All Fruits</button>
+    <button id="resetBtn" class="btn">Reset Colors</button>
+    <button id="showModalBtn" class="btn">Show Info Modal</button>
+  </section>
+
+  <!-- Modal -->
+  <div id="infoModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <h2 id="modalTitle">About This Page</h2>
+      <p>This interactive page shows 30 common fruits with their colors. Click on a fruit card to flip it and see its color name. Use the buttons to highlight all fruits or reset.</p>
+      <button id="closeModalBtn" class="btn">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
